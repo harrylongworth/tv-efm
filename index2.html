@@ -52,7 +52,7 @@ request.onload = function () {
             reader.addControl(stencil);
             var toc = Monocle.Controls.Contents(reader);         // Add a table of contents.
             reader.addControl(toc, 'popover', { hidden: true });
-            createBookTitle(reader, { start: function () { reader.showControl(toc); } });
+            // createBookTitle(reader, { /* start: function () { reader.showControl(toc); } */ });
         }
 
 
