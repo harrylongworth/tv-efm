@@ -45,7 +45,18 @@ request.open("GET", "books/test.epub", true);
 request.responseType = "blob";
 request.onload = function () {
     new Epub(request.response, function (bookData) {
-        Monocle.Reader("reader", bookData);
+        Monocle.Reader("reader", bookData, { flipper: Monocle.Flippers.Instant,  // The rest is just fanciness:
+          panels: Monocle.Panels.Magic },     // No animation and click anywhere
+        function (reader) {                   // to turn pages.
+            var stencil = new Monocle.Controls.Stencil(reader);  // Make internal links work.
+            reader.addControl(stencil);
+            var toc = Monocle.Controls.Contents(reader);         // Add a table of contents.
+            reader.addControl(toc, 'popover', { hidden: true });
+            createBookTitle(reader, { start: function () { reader.showControl(toc); } });
+        }
+
+
+            );
     });
 };
 request.send();
