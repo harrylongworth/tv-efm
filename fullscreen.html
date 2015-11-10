@@ -33,12 +33,15 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <script src="js/monocore.js"></script>
 <script src="js/monoctrl.js"></script>
 <script src="js/efm.js"></script>
+<script src="js/jquery.min.js"></script>
 <script type="text/javascript" charset="utf-8">
 // This is some basic code for using Monocle with EFM.
 // First, we need to tell zip.js where to find its accessory files.
 zip.workerScriptsPath = "js/"
 
 // An event handler for our file input.
+
+
 
 var request = new XMLHttpRequest();
 request.open("GET", "books/test.epub", true);
@@ -60,6 +63,12 @@ request.onload = function () {
     });
 };
 request.send();
+
+
+$(document).ready(function(){
+    var h = $(window).height()*0.95;
+    $("#reader").height(h);
+});
 
 
 // This will be called when the Epub object is fully initialized and
@@ -95,7 +104,7 @@ h1 {
     /* width: 450px; */
     /* min-height: 600px; */
 
-    height: 2000px;
+    height: 300px;
     border: 1px solid black;
     margin: 0 auto;
     background: white;
